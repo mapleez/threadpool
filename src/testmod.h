@@ -4,5 +4,6 @@
 #	define VERSION "0.1.1"
 
 extern void testmod_display_version ();
+extern int testmod_add_int (int, int);
 
 #endif // ~ _TEST_MOD_H_
