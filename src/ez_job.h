@@ -9,7 +9,7 @@
 #	define JOB_STAT_FINISH  3
 
 /* A nullable literal constant for array. */
-#	define JOB_ARRAY_STOP_ELEMENT {NULL, NULL, 0}
+#	define JOB_ARRAY_STOP_ELEMENT {NULL, NULL, NULL, NULL, 0}
 
 /*
  * A job entity.
@@ -20,6 +20,12 @@ typedef struct _ez_job {
 
 	/* Function for this job. */
 	pez_func _func;
+
+	/* Next ptr. */
+	pez_job _next;
+
+	/* Previous ptr. */
+	pez_job _prev;
 
 	/* Job status flag. */
 	int _status;

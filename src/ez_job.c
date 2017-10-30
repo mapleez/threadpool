@@ -9,8 +9,9 @@ pez_job ez_job_create (pez_func _func, void* _args) {
 	res = (pez_job) malloc (sizeof (*res));
 	if (! res) return res;
 
-	res -> _func = _func;
 	res -> _args = _args;
+	res -> _func = _func;
+	res -> _next = res -> _prev = NULL;
 	res -> _status = JOB_STAT_WAIT;
 	return res;
 }

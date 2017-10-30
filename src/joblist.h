@@ -6,23 +6,23 @@
 typedef struct _ez_joblist* pez_joblist, ez_joblist;
 
 /* An entity for job list. 
- * TODO consider job list design.
+ * I use double linked list to implement.
  */
 typedef struct _ez_joblist {
 	/* Point to next element. */
-	pez_joblist _next;
+	// pez_joblist _next;
 	
 	/* Point to header element. */
-	pez_joblist _head;
+	pez_job _head;
 
 	/* Point to tail element. */
-	pez_joblist _tail;
+	pez_job _tail;
 
 	/* Maintain the count of element. */
 	int _count;
 
 	/* The value of this element. */
-	pez_job _job;
+	// pez_job _job;
 } * pez_joblist, ez_joblist;
 
 /*
