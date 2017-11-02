@@ -1,0 +1,4 @@
+## Compile
+* autoreconf --install
+* make
+
