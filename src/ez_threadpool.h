@@ -1,4 +1,4 @@
-#ifdef _EZ_THREAD_POOL_H_
+#ifndef _EZ_THREAD_POOL_H_
 #	define _EZ_THREAD_POOL_H_
 
 typedef struct _ez_threadpool* pez_threadpool, ez_threadpool;

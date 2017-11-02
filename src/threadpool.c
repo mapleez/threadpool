@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "ez_threadpool.h"
 #include "joblist.h"
 

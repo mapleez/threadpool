@@ -1,4 +1,4 @@
-#ifdef _EZ_JOB_LIST_H_
+#ifndef _EZ_JOB_LIST_H_
 #	define _EZ_JOB_LIST_H_
 
 #include "ez_job.h"

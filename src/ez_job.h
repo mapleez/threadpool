@@ -1,4 +1,4 @@
-#ifdef _EZ_JOB_H_
+#ifndef _EZ_JOB_H_
 #	define _EZ_JOB_H_
 
 #include "ez_threadpool.h"

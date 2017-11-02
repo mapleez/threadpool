@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "joblist.h"
 
 /* Create an entity. */
@@ -55,14 +56,14 @@ pez_job ez_joblist_push (pez_joblist _list, pez_job _job) {
 }
 
 /* Push multiple elements into list tail. */
-int ez_joblist_push_m (pez_joblist _list, pez_job [] _jobs) {
+int ez_joblist_push_m (pez_joblist _list, pez_job _jobs []) {
 	int count = 0;
 	pez_job* p = _jobs;
 	if (! _list || ! p) 
 		return 0;
 
 	for (; p; ++ p) {
-		pez_job res = ez_joblist_push (_list, p);
+		pez_job res = ez_joblist_push (_list, *p);
 		count += (int) (!! res);
 	}
 	return count;
