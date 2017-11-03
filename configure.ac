@@ -11,6 +11,7 @@ AC_PROG_RANLIB
 AC_CONFIG_FILES([
 	Makefile
 	src/Makefile
+	tests/Makefile
 ])
 # AC_CONFIG_SRCDIR([src/])
 AC_CONFIG_HEADERS([config.h])
