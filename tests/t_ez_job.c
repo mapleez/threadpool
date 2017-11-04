@@ -7,7 +7,6 @@ void _func1 (void* args) {
 	// Empty...
 }
 
-
 /* Check creation. */
 int _t_ez_job_create1 () {
 	pez_job job = ez_job_create (_func1, NULL);
@@ -31,10 +30,38 @@ int _t_ez_job_create1 () {
 	return 1;
 }
 
+/* Check fields. */
+int _t_ez_job_create2 () {
+	int data = 1024;
+	pez_job job = ez_job_create (_func1, NULL);
+	if (job != NULL) {
+		assert (job -> _args == NULL);
+		assert (job -> _func == _func1);
+		assert (job -> _next == NULL);
+		assert (job -> _prev == NULL);
+		assert (job -> _status == JOB_STAT_WAIT);
+		ez_job_destroy (&job);
+	}
+
+	job = ez_job_create (_func1, &data);
+	if (job != NULL) {
+		assert (job -> _args == &data);
+		assert (job -> _func == _func1);
+		assert (job -> _next == NULL);
+		assert (job -> _prev == NULL);
+		assert (job -> _status == JOB_STAT_WAIT);
+		ez_job_destroy (&job);
+	}
+
+	return 1;
+}
+
+
 /* Main entry */
 int main (int argc, char* argv []) {
 	if (
-			_t_ez_job_create1 ()
+			_t_ez_job_create1 () &&
+			_t_ez_job_create2 ()
 	) puts ("t_ez_job ... ok!");
 	else
 		exit (1);
