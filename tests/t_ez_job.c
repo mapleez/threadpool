@@ -1,5 +1,6 @@
+#include <stdlib.h>
 #include <stdio.h>
-#include "ez_job.h"
+#include "header.h"
 #include <assert.h>
 
 void _func1 (void* args) {
@@ -36,7 +37,7 @@ int main (int argc, char* argv []) {
 			_t_ez_job_create1 ()
 	) puts ("t_ez_job ... ok!");
 	else
-		puts ("t_ez_job ... error!");
+		exit (1);
 
 	return 0;
 }

@@ -18,7 +18,7 @@ pez_job ez_job_create (pez_func _func, void* _args) {
 }
 
 void ez_job_destroy (pez_job* _job) {
-	if (! _job && *_job) {
+	if (_job && *_job) {
 		free (*_job);
 		*_job = NULL;
 	}
