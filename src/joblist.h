@@ -72,11 +72,18 @@ extern pez_job ez_joblist_push (pez_joblist, pez_job);
 extern int ez_joblist_push_m (pez_joblist, pez_job []);
 
 /*
- * TODO Considering the design again and again !!!
+ * Considering the design again and again !!!
  * Destroy a joblist. If this list exists at list one
  * job which status is waiting. This function will be
  * blocked until the job being scheduled by idle thread.
- * Then free all the memory.
+ * Then free all the memory. 
+ *
+ * Note this function shell be called until no thread 
+ * will reading the list. And the thread pool existing 
+ * threads which are  processing jobs shell not access 
+ * the job list.
+ * 
+ * $1  The job list entity.
  */
 extern void ez_joblist_destroy (pez_joblist*);
 

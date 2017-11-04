@@ -18,6 +18,14 @@ typedef void (*pez_func) (void*);
  * Return a new ez_threadpool pointer.
  */
 extern pez_threadpool ez_threadpool_create (int);
+
+/*
+ * This function will trigger thread pool shutdown.
+ * And all the thread will be killed by sending signal.
+ * Then free the resources of all.
+ * 
+ * $1  The thread pool entity. Will be setting to NULL.
+ */
 extern void ez_threadpool_destory (pez_threadpool*);
 
 /*
