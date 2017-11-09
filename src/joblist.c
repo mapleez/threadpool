@@ -44,12 +44,12 @@ pez_job ez_joblist_push (pez_joblist _list, pez_job _job) {
 
 	_job -> _next = NULL;
 	_job -> _prev = _list -> _tail;
-	if (ez_joblist_empty (_list)) {
-		_list -> _tail = _job;
+	if (ez_joblist_empty (_list))
 		_list -> _head = _job;
-	} else
+	else
 		_list -> _tail -> _next = _job;
 
+	_list -> _tail = _job;
 	_list -> _count ++;
 
 	return _job;
@@ -70,7 +70,24 @@ int ez_joblist_push_m (pez_joblist _list, pez_job _jobs []) {
 }
 
 
-/* TODO destroy. */
+/* 
+ * Destroy the job list. 
+ */
 void ez_joblist_destroy (pez_joblist* _list) {
+	if (! _list || ! *_list) return;
+
+	/* Free each element. */
+	pez_joblist l = *_list;
+	pez_job p = ez_joblist_pop (l);
+	while (p) {
+		pez_job tmp = p -> _next;
+		ez_job_destroy (&p);
+		p = tmp;
+	}
+
+	/* Free list memory. */
+	free (l);
+	*_list = NULL;
 }
+
 
