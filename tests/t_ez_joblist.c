@@ -15,6 +15,31 @@ int _t_ez_joblist_create1 () {
 	return 1;
 }
 
+int _t_ez_joblist_push1 () {
+	pez_joblist list = ez_joblist_create ();
+	size_t num = 0;
+	static ez_job jobs [] = {
+		{NULL, _test_func },
+		{NULL, _test_func },
+		{NULL, _test_func },
+		{NULL, _test_func },
+		{NULL, _test_func },
+		{NULL, _test_func },
+		{NULL, _test_func },
+		JOB_ARRAY_STOP_ELEMENT // terminal element.
+	};
+
+	num = sizeof (jobs) / sizeof (struct _ez_job);
+	num --; // the terminal element.
+	if (list) {
+		int x = ez_joblist_push_m (list, jobs);
+		assert (num == x);
+	}
+
+	ez_joblist_destroy (&list);
+	return 0;
+}
+
 /* Check push */
 int _t_ez_joblist_push () {
 	int c = 0;
@@ -30,6 +55,7 @@ int _t_ez_joblist_push () {
 	/* create a new job and push. */
 	res = ez_job_create ((pez_func) _t_ez_joblist_create1, NULL);
 	if (res != NULL) {
+		/* Push a job. */
 		pez_job tmp = ez_joblist_push (list, res);
 		assert (tmp == res);
 		assert (list -> _count == 1);
@@ -47,8 +73,10 @@ int _t_ez_joblist_push () {
 			tmp = t;
 		}
 
+		assert (list -> _count == (10));
 	}
 
+	/* free all the memory for each job element. */
 	ez_joblist_destroy (&list);
 	return 1;
 }
@@ -57,7 +85,8 @@ int _t_ez_joblist_push () {
 int main (int argc, char * argv []) {
 	if (
 			_t_ez_joblist_create1 () &&
-			_t_ez_joblist_push ()
+			_t_ez_joblist_push () &&
+			_t_ez_joblist_push1 ()
 	) puts ("t_ez_joblist ... ok!");
 	else
 		exit (1);

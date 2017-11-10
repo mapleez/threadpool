@@ -69,7 +69,7 @@ extern pez_job ez_joblist_push (pez_joblist, pez_job);
  *
  * Return the actual pushed job count.
  */
-extern int ez_joblist_push_m (pez_joblist, pez_job []);
+extern int ez_joblist_push_m (pez_joblist, ez_job []);
 
 /*
  * Considering the design again and again !!!

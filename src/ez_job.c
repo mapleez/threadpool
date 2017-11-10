@@ -1,5 +1,6 @@
 // #include "ez_threadpool.h"
 #include "ez_job.h"
+#include <string.h>
 #include <stdlib.h>
 
 pez_job ez_job_create (pez_func _func, void* _args) {
@@ -23,4 +24,18 @@ void ez_job_destroy (pez_job* _job) {
 		*_job = NULL;
 	}
 }
+
+/* Copy all the fields */
+pez_job ez_job_copy (pez_job _job) {
+	size_t size = 0;
+	if (! _job) return NULL;
+
+	size = sizeof (*_job);
+	pez_job res = (pez_job) malloc (size);
+	if (! res) return NULL;
+
+	memcpy (res, _job, size);
+	return res;
+}
+
 

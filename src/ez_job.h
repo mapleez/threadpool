@@ -53,5 +53,15 @@ extern pez_job ez_job_create (pez_func, void*);
  */
 extern void ez_job_destroy (pez_job*);
 
+/**
+ * Copy the job memory, with all the fields;
+ *
+ * $1  a ptr to an ez_job entity.
+ * Note: If $1 is NULL, this function returns NULL.
+ * Or the function malloc() memory and return new 
+ * ptr.
+ */
+extern pez_job ez_job_copy (pez_job);
+
 #endif // ~ _EZ_JOB_H_
 

@@ -1,4 +1,5 @@
 #include <stdlib.h>
+// #include <stdio.h> // FORDEBUG
 #include "joblist.h"
 
 /* Create an entity. */
@@ -27,6 +28,7 @@ pez_job ez_joblist_pop (pez_joblist _list) {
 		_list -> _head = _list -> _tail = NULL;
 	} else {
 		pez_job new_head = ptr -> _next;
+		new_head -> _prev = NULL;
 		_list -> _head = new_head;
 	}
 
@@ -56,14 +58,17 @@ pez_job ez_joblist_push (pez_joblist _list, pez_job _job) {
 }
 
 /* Push multiple elements into list tail. */
-int ez_joblist_push_m (pez_joblist _list, pez_job _jobs []) {
+int ez_joblist_push_m (pez_joblist _list, ez_job _jobs []) {
 	int count = 0;
-	pez_job* p = _jobs;
-	if (! _list || ! p) 
-		return 0;
+	pez_job p = NULL;
 
-	for (; p; ++ p) {
-		pez_job res = ez_joblist_push (_list, *p);
+	/* TODO error ??? */
+	if (! _list || ! _jobs) return 0;
+	p = _jobs;
+
+	for (; p && p -> _status != JOB_STAT_INVALID; ++ p) {
+		pez_job newcopy = ez_job_copy (p);
+		pez_job res = ez_joblist_push (_list, newcopy);
 		count += (int) (!! res);
 	}
 	return count;
