@@ -37,7 +37,7 @@ int _t_ez_joblist_push1 () {
 	}
 
 	ez_joblist_destroy (&list);
-	return 0;
+	return 1;
 }
 
 /* Check push */

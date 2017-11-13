@@ -3,13 +3,13 @@
 
 #include "ez_threadpool.h"
 
-#	define JOB_STAT_INVALID 0
-#	define JOB_STAT_RUN     1
-#	define JOB_STAT_WAIT    2
-#	define JOB_STAT_FINISH  3
+#	define JOB_STAT_INVALID -1
+#	define JOB_STAT_WAIT     0
+#	define JOB_STAT_RUN      1
+#	define JOB_STAT_FINISH   2
 
 /* A nullable literal constant for array. */
-#	define JOB_ARRAY_STOP_ELEMENT {NULL, NULL, NULL, NULL, 0}
+#	define JOB_ARRAY_STOP_ELEMENT {NULL, NULL, JOB_STAT_INVALID, NULL, NULL}
 
 /*
  * A job entity.
@@ -21,14 +21,15 @@ typedef struct _ez_job {
 	/* Function for this job. */
 	pez_func _func;
 
+	/* Job status flag. */
+	int _status;
+
 	/* Next ptr. */
 	pez_job _next;
 
 	/* Previous ptr. */
 	pez_job _prev;
 
-	/* Job status flag. */
-	int _status;
 } * pez_job, ez_job;
 
 /*

@@ -56,12 +56,33 @@ int _t_ez_job_create2 () {
 	return 1;
 }
 
+int _t_ez_job_copy () {
+	pez_job job = ez_job_create (_func1, NULL);
+	if (job != NULL) {
+		pez_job newone = ez_job_copy (job);
+
+		if (newone != NULL) {
+			assert (job -> _args == newone -> _args);
+			assert (job -> _status == newone -> _status);
+			assert (job -> _prev == newone -> _prev);
+			assert (job -> _func == newone -> _func);
+			assert (job -> _next == newone -> _next);
+
+			ez_job_destroy (newone);
+		}
+
+		ez_job_destroy (job);
+	}
+	return 1;
+}
+
 
 /* Main entry */
 int main (int argc, char* argv []) {
 	if (
 			_t_ez_job_create1 () &&
-			_t_ez_job_create2 ()
+			_t_ez_job_create2 () &&
+			_t_ez_job_copy ()
 	) puts ("t_ez_job ... ok!");
 	else
 		exit (1);
